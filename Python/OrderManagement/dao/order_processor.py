@@ -133,7 +133,7 @@ class OrderProcessor(IOrderManagementRepository):
         cursor = self.connection.cursor()
         try:
             query = "SELECT p.product_id, p.product_name, p.description, p.price, o.order_id, u.username, u.role  FROM Orders o   JOIN Users u ON o.user_id = u.user_id    JOIN Products p ON o.product_id = p.product_id  WHERE u.user_id = ?;"
-            cursor.execute(query, (user.userId,))  # why , ?
+            cursor.execute(query, (user.userId,))  
             orders = cursor.fetchall()
             if not orders:
                 raise UserNotFoundException(
